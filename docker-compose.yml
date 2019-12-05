@@ -1,0 +1,18 @@
+version: "3"
+services:
+  app:
+    container_name: wallet-service
+    restart: always
+    build: ./
+    ports:
+      - "3000:${PORT}"
+    volumes: 
+      - ".:/app"
+    depends_on: 
+      - mongo
+    
+  mongo:
+    container_name: mongo-wallet-service
+    image: mongo
+    ports:
+      - "${MONGO_PORT}:27017"
